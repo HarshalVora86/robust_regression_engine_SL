@@ -6,7 +6,6 @@
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikit-learn)
 ![Pandas](https://img.shields.io/badge/Pandas-DataAnalysis-150458?logo=pandas)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 ---
 
@@ -78,6 +77,12 @@ Random Forest shows the tightest fit around the ideal line; the untuned Decision
 
 ---
 
+## 🎥 Video Explanation
+
+📺 **[Watch the full project walkthrough on Google Drive](https://drive.google.com/file/d/1XGhmI6MOoWIy2aw8VXrjWaVkZyW94sVT/view?usp=sharing)**
+
+---
+
 ## 🗂️ Project Structure
 
 ```
@@ -115,8 +120,8 @@ Supervised Learning/PR2/
 
 ### 1. Explore the Notebook
 ```bash
-git clone <repo-url>
-cd Supervised-Learning-House-Price-Prediction
+git clone https://github.com/HarshalVora86/robust_regression_engine_SL.git
+cd robust_regression_engine_SL
 pip install -r requirements.txt
 jupyter notebook Notebook/Robust_Regression_Engine.ipynb
 ```
@@ -126,9 +131,6 @@ jupyter notebook Notebook/Robust_Regression_Engine.ipynb
 streamlit run app.py
 ```
 The app retrains the pipeline on load (cached after first run), lets you enter property details (area, bedrooms, bathrooms, location score, age, distance, school/metro proximity, crime index), and returns a predicted price along with the model's test-set R², RMSE, and MAE.
-
-### 3. Try it Live
-Deployed on Streamlit Community Cloud: **[Add your Streamlit app link here]**
 
 ---
 
@@ -146,9 +148,8 @@ Deployed on Streamlit Community Cloud: **[Add your Streamlit app link here]**
 
 ## 👤 Author
 
-**Your Name**
-📧 your.email@example.com | 🔗 [LinkedIn](#) | 💻 [GitHub](#)
+**Harshal Vora**
+🔗 [LinkedIn](https://www.linkedin.com/in/harshal-vora-344601251/) | 💻 [GitHub](https://github.com/HarshalVora86/)
 
 ---
 
-⭐ If you found this project useful, consider giving it a star!
