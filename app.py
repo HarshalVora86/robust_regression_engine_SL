@@ -1,6 +1,6 @@
 """
 Robust Regression Engine — House Price Prediction App
-Streamlit app for the Red & White Skill Education project.
+Streamlit app for project.
 
 How it works:
 - Loads the dataset and retrains the same preprocessing + best model
@@ -23,7 +23,8 @@ from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 # ----------------------------------------------------------------------
 # Page config
 # ----------------------------------------------------------------------
-st.set_page_config(page_title="House Price Predictor", page_icon="🏠", layout="centered")
+st.set_page_config(page_title="House Price Predictor",
+                   page_icon="🏠", layout="centered")
 
 DATA_PATHS = [
     "Advanced_Regression_HousePrice_Dataset_3800.xlsx",
@@ -31,8 +32,10 @@ DATA_PATHS = [
     "data/Advanced_Regression_HousePrice_Dataset_3800.xlsx",
 ]
 
-SCALE_FEATURES = ["area_sqft", "location_score", "property_age", "distance_city_km", "crime_rate_index"]
-BEST_PARAMS = {"C": 10, "gamma": 0.01, "epsilon": 0.01}  # from the notebook's tuning loop
+SCALE_FEATURES = ["area_sqft", "location_score",
+                  "property_age", "distance_city_km", "crime_rate_index"]
+# from the notebook's tuning loop
+BEST_PARAMS = {"C": 10, "gamma": 0.01, "epsilon": 0.01}
 
 
 # ----------------------------------------------------------------------
@@ -60,18 +63,21 @@ def load_and_train():
     x_scaler = StandardScaler()
     X_train_scaled = X_train.copy()
     X_test_scaled = X_test.copy()
-    X_train_scaled[SCALE_FEATURES] = x_scaler.fit_transform(X_train[SCALE_FEATURES])
+    X_train_scaled[SCALE_FEATURES] = x_scaler.fit_transform(
+        X_train[SCALE_FEATURES])
     X_test_scaled[SCALE_FEATURES] = x_scaler.transform(X_test[SCALE_FEATURES])
 
     y_scaler = StandardScaler()
-    y_train_scaled = y_scaler.fit_transform(y_train.values.reshape(-1, 1)).ravel()
+    y_train_scaled = y_scaler.fit_transform(
+        y_train.values.reshape(-1, 1)).ravel()
 
     model = SVR(kernel="rbf", **BEST_PARAMS)
     model.fit(X_train_scaled, y_train_scaled)
 
     # Test-set metrics for display
     test_pred_scaled = model.predict(X_test_scaled)
-    test_pred = y_scaler.inverse_transform(test_pred_scaled.reshape(-1, 1)).ravel()
+    test_pred = y_scaler.inverse_transform(
+        test_pred_scaled.reshape(-1, 1)).ravel()
     r2 = r2_score(y_test, test_pred)
     rmse = np.sqrt(mean_squared_error(y_test, test_pred))
     mae = mean_absolute_error(y_test, test_pred)
@@ -124,8 +130,10 @@ with c1:
         "Area (sqft)", min_value=200, max_value=10000,
         value=int(np.mean(ranges["area_sqft"])), step=50
     )
-    bedrooms = st.number_input("Bedrooms", min_value=1, max_value=10, value=3, step=1)
-    bathrooms = st.number_input("Bathrooms", min_value=1, max_value=10, value=2, step=1)
+    bedrooms = st.number_input(
+        "Bedrooms", min_value=1, max_value=10, value=3, step=1)
+    bathrooms = st.number_input(
+        "Bathrooms", min_value=1, max_value=10, value=2, step=1)
     location_score = st.slider(
         "Location Score", min_value=0.0, max_value=10.0,
         value=round(float(np.mean(ranges["location_score"])), 1), step=0.1
@@ -147,7 +155,8 @@ with c2:
     near_school = st.selectbox("Near a School?", ["No", "Yes"])
     near_metro = st.selectbox("Near a Metro Station?", ["No", "Yes"])
 
-predict_btn = st.button("Predict Price", type="primary", use_container_width=True)
+predict_btn = st.button("Predict Price", type="primary",
+                        use_container_width=True)
 
 if predict_btn:
     input_df = pd.DataFrame([{
@@ -163,10 +172,12 @@ if predict_btn:
     }])[bundle["feature_columns"]]
 
     input_scaled = input_df.copy()
-    input_scaled[SCALE_FEATURES] = bundle["x_scaler"].transform(input_df[SCALE_FEATURES])
+    input_scaled[SCALE_FEATURES] = bundle["x_scaler"].transform(
+        input_df[SCALE_FEATURES])
 
     pred_scaled = bundle["model"].predict(input_scaled)
-    pred_price = bundle["y_scaler"].inverse_transform(pred_scaled.reshape(-1, 1)).ravel()[0]
+    pred_price = bundle["y_scaler"].inverse_transform(
+        pred_scaled.reshape(-1, 1)).ravel()[0]
 
     st.success(f"### Predicted Price: ₹{pred_price:,.0f}")
     st.caption(
