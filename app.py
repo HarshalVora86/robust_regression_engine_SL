@@ -114,9 +114,8 @@ if bundle is None:
     st.stop()
 
 metrics = bundle["metrics"]
-col1, col2, col3 = st.columns(3)
 
-st.divider()
+st.divider()s
 st.subheader("Enter Property Details")
 
 ranges = bundle["feature_ranges"]
