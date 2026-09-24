@@ -102,7 +102,7 @@ def load_and_train():
 # UI
 # ----------------------------------------------------------------------
 st.title("🏠 House Price Predictor")
-st.caption("Robust Regression Engine — SVR (Tuned RBF Kernel)")
+st.caption("Robust Regression Engine")
 
 bundle = load_and_train()
 
@@ -115,9 +115,6 @@ if bundle is None:
 
 metrics = bundle["metrics"]
 col1, col2, col3 = st.columns(3)
-col1.metric("Test R²", f"{metrics['r2']:.3f}")
-col2.metric("Test RMSE", f"₹{metrics['rmse']:,.0f}")
-col3.metric("Test MAE", f"₹{metrics['mae']:,.0f}")
 
 st.divider()
 st.subheader("Enter Property Details")
