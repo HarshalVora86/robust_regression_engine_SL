@@ -66,7 +66,7 @@ def load_metrics():
 # UI
 # ----------------------------------------------------------------------
 st.title("🏠 House Price Predictor")
-st.caption("Robust Regression Engine — SVR (Tuned RBF Kernel)")
+st.caption("Robust Regression Engine")
 
 pipeline = load_pipeline()
 metrics = load_metrics()
