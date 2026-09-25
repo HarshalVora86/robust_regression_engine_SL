@@ -6,9 +6,6 @@
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikit-learn)
 ![Pandas](https://img.shields.io/badge/Pandas-DataAnalysis-150458?logo=pandas)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-
-### 🚀 [**Live Demo →**](https://robustregressionenginesl.streamlit.app/)
 
 ---
 
@@ -29,7 +26,7 @@ This project builds an **end-to-end regression pipeline** to predict house price
 - **Tree-based models** — Decision Tree (default vs. tuned via `max_depth`) and Random Forest, with an overfit-gap analysis
 - **Support Vector Regression** — Linear and RBF kernels, followed by a manual grid search over `C`, `gamma`, and `epsilon`
 - **Full model comparison** — 9 models evaluated side-by-side on R², RMSE, and MAE, with an automated overfit/underfit diagnosis
-- **Model persistence** — the best model (tuned SVR) and its scalers saved as a `.pkl` bundle with `joblib`
+- **Model persistence** — the best model (tuned SVR) and its scalers exported as `house_price_pipeline.pkl` via `joblib`, with test-set metrics saved separately to `metrics.json` (`train_model.py`)
 - **Streamlit app** — an interactive UI to enter property details and get a live price prediction
 
 ---
@@ -89,19 +86,22 @@ Random Forest shows the tightest fit around the ideal line; the untuned Decision
 ## 🗂️ Project Structure
 
 ```
-Supervised Learning/PR2/
+robust_regression_engine_SL/
 ├── dataset/
 │   └── Advanced_Regression_HousePrice_Dataset_3800.xlsx
 ├── Model/
-│   └── house_price_model.pkl          # Saved SVR (tuned RBF) + scalers, via joblib
+│   ├── house_price_pipeline.pkl       # Saved SVR (tuned RBF) + scalers, via joblib
+│   └── metrics.json                   # Saved test-set R², RMSE, MAE
 ├── Notebook/
 │   └── Robust_Regression_Engine.ipynb # Full analysis: EDA → models → CV → tuning → export
 ├── Screenshots/
 │   ├── feature_correlation.png
 │   ├── decision_tree_tuned.png
 │   └── model_comparison.png
+├── train_model.py                     # Standalone script: trains pipeline, saves Model/ artifacts
 ├── app.py                             # Streamlit app for live predictions
-└── requirements.txt
+├── requirements.txt
+└── README.md
 ```
 
 ---
