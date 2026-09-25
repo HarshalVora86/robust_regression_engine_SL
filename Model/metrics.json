@@ -1,0 +1,20 @@
+{
+    "MAE": 1624252.8424155775,
+    "MSE": 4972464643368.154,
+    "RMSE": 2229902.3842689064,
+    "R2": 0.9382572274256029,
+    "train_rows": 3040,
+    "test_rows": 760,
+    "features": [
+        "area_sqft",
+        "location_score",
+        "property_age",
+        "distance_city_km",
+        "crime_rate_index",
+        "bedrooms",
+        "bathrooms",
+        "near_school",
+        "near_metro"
+    ],
+    "target": "house_price_inr"
+}
