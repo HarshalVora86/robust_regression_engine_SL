@@ -17,7 +17,8 @@ import streamlit as st
 # ----------------------------------------------------------------------
 # Page config
 # ----------------------------------------------------------------------
-st.set_page_config(page_title="House Price Predictor", page_icon="🏠", layout="centered")
+st.set_page_config(page_title="House Price Predictor",
+                   page_icon="🏠", layout="centered")
 
 PIPELINE_PATHS = [
     "Model/house_price_pipeline.pkl",
@@ -30,9 +31,11 @@ METRICS_PATHS = [
     "../Model/metrics.json",
 ]
 
-SCALE_FEATURES = ["area_sqft", "location_score", "property_age", "distance_city_km", "crime_rate_index"]
+SCALE_FEATURES = ["area_sqft", "location_score",
+                  "property_age", "distance_city_km", "crime_rate_index"]
 PASSTHROUGH_FEATURES = ["bedrooms", "bathrooms", "near_school", "near_metro"]
-FEATURE_ORDER = SCALE_FEATURES + PASSTHROUGH_FEATURES  # must match train_model.py's FEATURES order
+# must match train_model.py's FEATURES order
+FEATURE_ORDER = SCALE_FEATURES + PASSTHROUGH_FEATURES
 
 
 # ----------------------------------------------------------------------
@@ -75,32 +78,32 @@ if pipeline is None:
     )
     st.stop()
 
-if metrics:
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Test R²", f"{metrics['R2']:.3f}")
-    col2.metric("Test RMSE", f"₹{metrics['RMSE']:,.0f}")
-    col3.metric("Test MAE", f"₹{metrics['MAE']:,.0f}")
-else:
-    st.info("metrics.json not found — predictions will still work, but performance stats aren't shown.")
-
 st.divider()
 st.subheader("Enter Property Details")
 
 c1, c2 = st.columns(2)
 with c1:
-    area_sqft = st.number_input("Area (sqft)", min_value=200, max_value=10000, value=1800, step=50)
-    bedrooms = st.number_input("Bedrooms", min_value=1, max_value=10, value=3, step=1)
-    bathrooms = st.number_input("Bathrooms", min_value=1, max_value=10, value=2, step=1)
-    location_score = st.slider("Location Score", min_value=0.0, max_value=10.0, value=7.0, step=0.1)
+    area_sqft = st.number_input(
+        "Area (sqft)", min_value=200, max_value=10000, value=1800, step=50)
+    bedrooms = st.number_input(
+        "Bedrooms", min_value=1, max_value=10, value=3, step=1)
+    bathrooms = st.number_input(
+        "Bathrooms", min_value=1, max_value=10, value=2, step=1)
+    location_score = st.slider(
+        "Location Score", min_value=0.0, max_value=10.0, value=7.0, step=0.1)
 
 with c2:
-    property_age = st.number_input("Property Age (years)", min_value=0, max_value=100, value=15, step=1)
-    distance_city_km = st.number_input("Distance from City Center (km)", min_value=0.0, max_value=100.0, value=10.0, step=0.5)
-    crime_rate_index = st.slider("Crime Rate Index", min_value=0.0, max_value=10.0, value=3.5, step=0.1)
+    property_age = st.number_input(
+        "Property Age (years)", min_value=0, max_value=100, value=15, step=1)
+    distance_city_km = st.number_input(
+        "Distance from City Center (km)", min_value=0.0, max_value=100.0, value=10.0, step=0.5)
+    crime_rate_index = st.slider(
+        "Crime Rate Index", min_value=0.0, max_value=10.0, value=3.5, step=0.1)
     near_school = st.selectbox("Near a School?", ["No", "Yes"])
     near_metro = st.selectbox("Near a Metro Station?", ["No", "Yes"])
 
-predict_btn = st.button("Predict Price", type="primary", use_container_width=True)
+predict_btn = st.button("Predict Price", type="primary",
+                        use_container_width=True)
 
 if predict_btn:
     input_df = pd.DataFrame([{
