@@ -6,6 +6,9 @@
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikit-learn)
 ![Pandas](https://img.shields.io/badge/Pandas-DataAnalysis-150458?logo=pandas)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+
+### 🚀 [**Live Demo →**](https://robustregressionenginesl.streamlit.app/)
 
 ---
 
@@ -132,6 +135,9 @@ streamlit run app.py
 ```
 The app retrains the pipeline on load (cached after first run), lets you enter property details (area, bedrooms, bathrooms, location score, age, distance, school/metro proximity, crime index), and returns a predicted price along with the model's test-set R², RMSE, and MAE.
 
+### 3. Try it Live
+🚀 **Live app:** [robustregressionenginesl.streamlit.app](https://robustregressionenginesl.streamlit.app/)
+
 ---
 
 ## 📈 Methodology Summary
@@ -153,3 +159,4 @@ The app retrains the pipeline on load (cached after first run), lets you enter p
 
 ---
 
+⭐ If you found this project useful, consider giving it a star!
